@@ -6,7 +6,7 @@ from app.models.properties.translations import *
 
 class GeneralEvent(BasicModel):
 	event_id = ndb.IntegerProperty(required=True)
-	name_id = ndb.IntegerProperty(required=True)
+	keyname = ndb.StringProperty(required=True)
 	name = ndb.StringProperty(required=True)
 	privacy = ndb.StringProperty( choices=( 'Private','Public','Secret' ) )
 	picture =  ndb.StringProperty()
@@ -16,9 +16,11 @@ class GeneralEvent(BasicModel):
 	location = ndb.StringProperty()
 	active = ndb.BooleanProperty()
 
-	#agenda_items = ndb.StructuredProperty( AgendaItem , repeated=True )
+	agenda_items = ndb.LocalStructuredProperty( AgendaItem , repeated=True )
 	#participants = ndb.StructuredProperty( Participant , repeated=True )
 	#anchors = ndb.StructuredProperty( Anchor , repeated=True )
 
 	description = StringTranslationProperty()
 	title = ChoiceTranslationProperty( spanish_choices=( 'hola','pepino' ),english_choices=( 'hello','cucumber'),portuguese_choices=( 'ajo','toto' ) )
+
+

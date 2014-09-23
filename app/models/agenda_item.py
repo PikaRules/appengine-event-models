@@ -6,4 +6,4 @@ class AgendaItem(BasicModel):
 	start_datetime = ndb.DateTimeProperty()
 	end_datetime = ndb.DateTimeProperty()
 	active = ndb.BooleanProperty()
-	speakers = ndb.StructuredProperty( Speaker , repeated=True )
+	speakers = ndb.LocalStructuredProperty( Speaker , repeated=True )
