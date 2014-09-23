@@ -2,6 +2,7 @@ from ferris import BasicModel, ndb
 from app.models.agenda_item import AgendaItem
 from app.models.anchor import Anchor
 from app.models.participant import Participant
+from app.models.properties.translations import *
 
 class GeneralEvent(BasicModel):
 	event_id = ndb.IntegerProperty(required=True)
@@ -15,6 +16,9 @@ class GeneralEvent(BasicModel):
 	location = ndb.StringProperty()
 	active = ndb.BooleanProperty()
 
-	agenda_items = ndb.StructuredProperty( AgendaItem , repeated=True )
-	participants = ndb.StructuredProperty( Participant , repeated=True )
-	anchors = ndb.StructuredProperty( Anchor , repeated=True )
+	#agenda_items = ndb.StructuredProperty( AgendaItem , repeated=True )
+	#participants = ndb.StructuredProperty( Participant , repeated=True )
+	#anchors = ndb.StructuredProperty( Anchor , repeated=True )
+
+	description = StringTranslationProperty()
+	title = ChoiceTranslationProperty( spanish_choices=( 'hola','pepino' ),english_choices=( 'hello','cucumber'),portuguese_choices=( 'ajo','toto' ) )
