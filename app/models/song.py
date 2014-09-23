@@ -3,7 +3,6 @@ from google.appengine.ext import ndb
 from ferris import Controller, route, messages
 from app.models.artist import Artist
 
-
 class Song(BasicModel):
 
 	title=ndb.StringProperty(required=True)

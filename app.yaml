@@ -1,4 +1,4 @@
-application: music-app-bakcend-test1    #.appspot.com
+application: test-models    #.appspot.com
 version: 1
 
 runtime: python27
