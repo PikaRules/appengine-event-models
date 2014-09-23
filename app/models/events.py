@@ -1,7 +1,6 @@
 from ferris import BasicModel, ndb
 from app.models.agenda_item import AgendaItem
-from app.models.anchor import Anchor
-from app.models.participant import Participant
+from app.models.event_persons import *
 from app.models.properties.translations import *
 
 
@@ -9,7 +8,7 @@ class GeneralEvent(BasicModel):
 	event_id = ndb.IntegerProperty(required=True)
 	keyname = ndb.StringProperty(required=True)
 	name = ndb.StringProperty()
-	privacy = ndb.StringProperty( key_value='Private', choices=( 'Private','Public','Secret' ) )
+	privacy = ndb.StringProperty( choices=( 'Private','Public','Secret' ) )
 	picture =  ndb.StringProperty()
 	start_datetime = ndb.DateTimeProperty()
 	end_datetime = ndb.DateTimeProperty()
@@ -22,7 +21,7 @@ class GeneralEvent(BasicModel):
 	#anchors = ndb.StructuredProperty( Anchor , repeated=True )
 
 	description = StringTranslationProperty()
-	title = ChoiceTranslationProperty( ChoiceTranslationProperty( choices= {
+	title = ChoiceTranslationProperty( choices= {
 		'choice1': {
 			'spanish': 'mango',
 			'english': 'mangon',  
@@ -35,7 +34,7 @@ class GeneralEvent(BasicModel):
 			'spanish': 'pollo',
 			'english': 'chicken',  
 		}
-	}))
+	})
 
 
 class VideoCastEvent(GeneralEvent):

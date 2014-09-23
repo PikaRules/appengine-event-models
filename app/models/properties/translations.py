@@ -48,14 +48,31 @@ class ChoiceTranslationProperty(ndb.StructuredProperty):
 				raise TypeError('The value %s is not a valid choice option, possible options are %s ' % (repr(value.keyname),repr(self.choices.keys())) )
 
 	def exist_in_dictionary( self, choices, searched_value ):
-		for key,value in choices:
+		for key in choices.keys():
 			if key == searched_value:
 				return True
 		return False
 
 	def _to_base_type(self, value):
-		spanish = self.choices[value]['spanish']
-		english = self.choices[value]['english']
-		portuguese = self.choices[value]['portuguese']
-		tmodel = ChoiceTranslation( keyname=value, spanish=spanish, english=english, portuguese=portuguese )
+		spanish, english, portuguese = None
+		try:
+			spanish = self.choices[value.keyname]['spanish']
+		except Exception as e:
+			pass
+		try:
+			english = self.choices[value.keyname]['english']
+		except Exception as e:
+			pass
+		try:
+			portuguese = self.choices[value.keyname]['portuguese']
+		except Exception as e:
+			pass
+		tmodel = ChoiceTranslation( keyname=value.keyname, spanish=spanish, english=english, portuguese=portuguese )
 		return tmodel
+
+	"""def _from_base_type(self, value):
+		spanish = self.choices[value.keyname]['spanish']
+		english = self.choices[value.keyname]['english']
+		portuguese = self.choices[value.keyname]['portuguese']
+		tmodel = ChoiceTranslation( keyname=value.keyname, spanish=spanish, english=english, portuguese=portuguese )
+		return tmodel"""
